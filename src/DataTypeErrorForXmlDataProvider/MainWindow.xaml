@@ -1,0 +1,28 @@
+<Window
+    x:Class="DataTypeErrorForXmlDataProvider.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <XmlDataProvider x:Key="GreekHeroesData" XPath="GreekHeroes/Hero">
+            <x:XData>
+                <GreekHeroes xmlns="">
+                    <Hero Name="Jason" />
+                    <Hero Name="Hercules" />
+                    <Hero Name="Theseus" />
+                    <Hero Name="Odysseus" />
+                    <Hero Name="Perseus" />
+                </GreekHeroes>
+            </x:XData>
+        </XmlDataProvider>
+        <DataTemplate DataType="Hero">
+            <TextBlock Foreground="Blue" Text="{Binding XPath=@Name}" />
+        </DataTemplate>
+    </Window.Resources>
+    <ListBox ItemsSource="{Binding Source={StaticResource GreekHeroesData}}" />
+</Window>
